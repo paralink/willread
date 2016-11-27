@@ -3,6 +3,7 @@
 	"info": {
 		"name": "willread",
 		"_postman_id": "c3c8e6ee-e7a6-bcf4-2ec6-0f8a6eaeb0ea",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -23,6 +24,40 @@
 					"raw": "{\n\t\"title\": \"A Neighborhood of Infinity: The IO Monad for People who Simply Don't Care\",\n\t\"link\": \"http://blog.sigfpe.com/2007/11/io-monad-for-people-who-simply-dont.html\",\n\t\"tag\": [\n\t\t\"code\", \"haskell\", \"monad\"\n\t]\n}"
 				},
 				"description": "POST /new"
+			},
+			"response": []
+		},
+		{
+			"name": "list links",
+			"request": {
+				"url": "{{endpoint}}/list",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "GET /list"
+			},
+			"response": []
+		},
+		{
+			"name": "batch insert",
+			"request": {
+				"url": "{{endpoint}}/new_batch",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"title\": \"A Neighborhood of Infinity: The IO Monad for People who Simply Don't Care\",\n\t\t\"link\": \"http://blog.sigfpe.com/2007/11/io-monad-for-people-who-simply-dont.html\",\n\t\t\"tag\": [\n\t\t\t\"code\", \"haskell\", \"monad\"\n\t\t]\t\t\n\t},\n\t{\n\t\t\"title\": \"Igor Ostrovsky Blogging\",\n\t\t\"link\": \"http://igoro.com/\",\n\t\t\"tag\": [\"code\"]\n\t},\n\t{\n\t\t\"title\": \"The load, capacity, and availability of quorum systems\",\n\t\t\"link\": \"https://blog.acolyer.org/2016/10/03/the-load-capacity-and-availability-of-quorum-systems/\",\n\t\t\"tag\": [\"code\"]\n\t}\n]"
+				},
+				"description": "POST /new_batch"
 			},
 			"response": []
 		}
