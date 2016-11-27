@@ -1,0 +1,30 @@
+{
+	"variables": [],
+	"info": {
+		"name": "willread",
+		"_postman_id": "c3c8e6ee-e7a6-bcf4-2ec6-0f8a6eaeb0ea",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "insert link",
+			"request": {
+				"url": "{{endpoint}}/new",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"A Neighborhood of Infinity: The IO Monad for People who Simply Don't Care\",\n\t\"link\": \"http://blog.sigfpe.com/2007/11/io-monad-for-people-who-simply-dont.html\",\n\t\"tag\": [\n\t\t\"code\", \"haskell\", \"monad\"\n\t]\n}"
+				},
+				"description": "POST /new"
+			},
+			"response": []
+		}
+	]
+}
