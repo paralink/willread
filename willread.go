@@ -44,20 +44,41 @@ func newLink(w http.ResponseWriter, r *http.Request) {
 
 	store.Add(rec)
 
-	fmt.Println(rec)
+	fmt.Fprintln(w, "Succeed")
+}
+
+func batchLinks(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+
+	decoder := json.NewDecoder(r.Body)
+
+	var links []*Link
+	if err := decoder.Decode(&links); err != nil {
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+
+	for _, link := range links {
+		store.Add(link)
+	}
+
+	fmt.Fprintln(w, "Succeed")
 }
 
 func listLink(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	links := store.List()
-	fmt.Println(links)
 	json.NewEncoder(w).Encode(links)
 }
 
 func main() {
 	http.HandleFunc("/new", newLink)
 	http.HandleFunc("/list", listLink)
+	http.HandleFunc("/new_batch", batchLinks)
 
 	// storage
 	log.Fatal(http.ListenAndServe(":8080", nil))
